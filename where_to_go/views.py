@@ -1,7 +1,8 @@
 # views.py
 
 from django.http import HttpResponse
+from django.template import loader
+from django.shortcuts import render
 
 def show_main_page(request):
-    text_to_show = 'Здесь будет карта'
-    return HttpResponse(text_to_show)
+    return render(request, 'index.html')
