@@ -1,4 +1,11 @@
 from django.db import models
 
 # Create your models here.
-print('Hello world')
+class Place(models.Model):
+    title = models.CharField(max_length=250)
+    imgs = models.ImageField()
+    description_short = models.TextField()
+    description_long = models.TextField()
+    latitude = models.FloatField()
+    longtitude = models.FloatField()
+
