@@ -19,5 +19,6 @@ from where_to_go import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.show_main_page)
+    path('', views.show_main_page),
+    path(r'places/<int:id>/', views.get_location_title_by_id)
 ]
