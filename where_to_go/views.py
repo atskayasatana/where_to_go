@@ -70,7 +70,10 @@ def get_location_title_by_id(request, id):
     place_description['description_long'] = description_long
     place_description['coordinates'] = coordinates
 
-    place_description_json = json.dumps(dict(place_description), indent="", ensure_ascii=False)
-
+    place_description_json = json.dumps(dict(place_description),
+                                        indent=12,
+                                        ensure_ascii=False,
+                                        separators=(',', ': '),
+                                        sort_keys= False)
 
     return render(request, 'place_tmpl.html', {'title':place_description_json})
