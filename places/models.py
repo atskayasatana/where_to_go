@@ -20,3 +20,12 @@ class Image(models.Model):
         self.title = f'{self.position_number} {self.place.title}'
         super(Image, self).save(*args, **kwargs)
 
+    def places_image(self, obj):
+        return mark_safe('<img src="{url}" width="{width}" height="{height}" />').format(
+            url=obj.image.url,
+            width=obj.image.width,
+            height=obj.image.height
+
+        )
+
+

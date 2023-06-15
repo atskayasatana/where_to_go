@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 from .models import Image, Place
 # Register your models here.
 
@@ -6,13 +7,26 @@ class ImageInLine(admin.TabularInline):
     model = Image
     extra = 3
     max_num = 5
-    fields = ('position_number',  'image')
+    fields = ('position_number',  'image', 'image_preview')
+    readonly_fields = ('image_preview',)
+    def image_preview(self, obj):
+        return mark_safe('<img src="{url}" height="{height}" width="{width}">'.format(
+            url=obj.image.url,
+            height=200,
+            width=300))
 
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
     list_display = ('title',)
     inlines = [ImageInLine]
-    fields = ('title', 'description_short', 'description_long', 'latitude', 'longtitude')
+    fields = ('title', 'description_short', 'description_long', 'latitude', 'longtitude', 'image_preview')
+    readonly_fields = ('image_preview',)
+    def image_preview(self, obj):
+        return mark_safe('<img src="{url}" height="{height}" width="{width}">'.format(
+            url=obj.image.url,
+            height=200,
+            width=300))
+
 
 
 @admin.register(Image)
@@ -20,6 +34,13 @@ class ImageAdmin(admin.ModelAdmin):
     list_display = ('title',)
     fields = ('title',)
     raw_id_fields = ('place',)
-    fields = ('place', 'position_number', 'title', 'image')
+    fields = ('place', 'position_number', 'title', 'image', 'image_preview')
+    readonly_fields = ('image_preview',)
+    def image_preview(self, obj):
+        return mark_safe('<img src="{url}" height="{height}" width="{width}">'.format(
+            url=obj.image.url,
+            height=200,
+            width=300))
+
 
 
