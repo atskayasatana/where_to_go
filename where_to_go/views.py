@@ -7,10 +7,11 @@ from collections import OrderedDict
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 from places.models import Place, Image
 
-def show_main_page(request):
 
+def show_main_page(request):
 
     geo_json_dict = {'type': 'Feature Collection', 'features': []}
 
@@ -18,10 +19,9 @@ def show_main_page(request):
 
     for place in places_set.iterator():
 
-        feature_dict =  OrderedDict()
+        feature_dict = OrderedDict()
         geometry_dict = OrderedDict()
         properties_dict = OrderedDict()
-
 
         title = place.title
         coordinates = [place.longtitude, place.latitude]
@@ -31,7 +31,7 @@ def show_main_page(request):
 
         properties_dict['title'] = title
         properties_dict['placeId'] = title
-        properties_dict['detailsUrl'] = 'XXX'
+        properties_dict['detailsUrl'] = reverse('place_info', args=[place.id])
 
         feature_dict['type'] = 'Feature'
         feature_dict['geometry'] = geometry_dict
@@ -58,9 +58,8 @@ def get_location_title_by_id(request, id):
     coordinates['lat'] = latitude
     coordinates['lng'] = longtitude
 
-    print(title)
 
-    images_set = Image.objects.filter(title__contains=title)
+    images_set = place.images.all()
     for image in images_set:
         images.append(image.image.url)
 
@@ -70,10 +69,4 @@ def get_location_title_by_id(request, id):
     place_description['description_long'] = description_long
     place_description['coordinates'] = coordinates
 
-    place_description_json = json.dumps(dict(place_description),
-                                        indent=12,
-                                        ensure_ascii=False,
-                                        separators=(',', ': '),
-                                        sort_keys= False)
-
-    return render(request, 'place_tmpl.html', {'title':place_description_json})
+    return JsonResponse(dict(place_description), safe=False)
