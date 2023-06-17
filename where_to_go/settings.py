@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import os
 import os.path
 from pathlib import Path
 
@@ -19,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-cc))%)*xu%vlhd4kb9bv^zgne4!n@-h1ns2#g3l=p%swk)%25!'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -77,8 +78,8 @@ WSGI_APPLICATION = 'where_to_go.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('DB_ENGINE'),
+        'NAME': os.getenv('DB_NAME'),
     }
 }
 
@@ -121,13 +122,15 @@ USE_TZ = True
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
 
-STATIC_URL ='/static/'
+STATIC_URL = os.getenv('STATIC_URL')
+
+STATIC_ROOT = os.getenv('STATIC_ROOT')
 
 MEDIA_DIR = os.path.join(BASE_DIR, 'media/')
 
-MEDIA_ROOT = MEDIA_DIR
+MEDIA_ROOT = os.getenv('MEDIA_ROOT')
 
-MEDIA_URL = '/media/'
+MEDIA_URL = os.getenv('MEDIA_URL')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
