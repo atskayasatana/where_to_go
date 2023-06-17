@@ -131,7 +131,7 @@ STATIC_ROOT = env('STATIC_ROOT', '/static/')
 
 MEDIA_DIR = os.path.join(BASE_DIR, '/media/')
 
-MEDIA_ROOT = env('MEDIA_ROOT', '/media/')
+MEDIA_ROOT = env('MEDIA_ROOT', 'media/')
 
 MEDIA_URL = env('MEDIA_URL', '/media/')
 
