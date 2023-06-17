@@ -9,10 +9,11 @@ class Place(models.Model):
     latitude = models.FloatField(verbose_name='Широта')
     longtitude = models.FloatField(verbose_name='Долгота')
 
+
 class Image(models.Model):
 
     place = models.ForeignKey(Place, on_delete=models.CASCADE, null=True, blank=True, verbose_name='Локация', related_name='images')
-    position_number = models.IntegerField(null=True, verbose_name='Порядковый номер изображения')
+    position_number = models.IntegerField(null=False, verbose_name='Порядковый номер изображения', default=0, blank=False)
     title = models.CharField(max_length=200, null=True, blank=True, verbose_name='Название изображения')
     image = models.ImageField(verbose_name='Файл')
 
@@ -27,5 +28,7 @@ class Image(models.Model):
             height=obj.image.height
 
         )
+    class Meta:
+        ordering = ('position_number',)
 
 
