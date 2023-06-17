@@ -4,4 +4,4 @@ django-tinymce==3.6.1
 environs==9.5.0
 marshmallow~=3.14
 packaging~=21.3
-python-dotenv~=1.0
+python-dotenv~=1.0.0
