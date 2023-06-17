@@ -1,5 +1,5 @@
-Django~=3.2
-django-admin-sortable2~=2.1.8
+Django>=3
+django-admin-sortable2>=2
 django-tinymce==3.6.1
 environs==9.5.0
 marshmallow~=3.14
