@@ -59,16 +59,27 @@ python manage.py createsuperuser
 
 Пользователю доступны 2 раздела: Images и Places.
 
+![Главная](https://github.com/atskayasatana/Images/blob/6c1a4150eb13de7058472c32848690cc0d9e519d/admin_main_page.png)
+
 В Images добавляются изображения, в Places - описания мест и изображения.
 
 В админке можно добавлять картинки как отдельно в разделе Image, так и сразу при создании новой локации.
+
+![Добавляем картинку](https://github.com/atskayasatana/Images/blob/6c1a4150eb13de7058472c32848690cc0d9e519d/add%20image_1.png)
 
 
 При добавлении картинки в Images название ей присваивается автоматически.
 
 Все картинки добавленные в Image появятся и в разделе Places.
 
-Картинки можно перемещать/менять местами. Для этого нужно зажать левую кнопку мыши на серой области Image Image Object. Изменения в порядке отобразятся и в области с описанием локации.
+![Локации](https://github.com/atskayasatana/Images/blob/6c1a4150eb13de7058472c32848690cc0d9e519d/places.png)
+
+Картинки можно перемещать/менять местами. Для этого нужно зажать левую кнопку мыши на серой области Image Image Object. 
+
+![Перетаскивание](https://github.com/atskayasatana/Images/blob/6c1a4150eb13de7058472c32848690cc0d9e519d/drag%20image.png)
+
+Изменения в порядке отобразятся и в области с описанием локации.
+
 
 
 
