@@ -129,15 +129,14 @@ STATIC_URL = env('STATIC_URL', '/static/')
 
 STATIC_ROOT = env('STATIC_ROOT', '/static/')
 
-MEDIA_DIR = os.path.join(BASE_DIR, 'media/')
+MEDIA_DIR = os.path.join(BASE_DIR, '/media/')
 
-MEDIA_ROOT = os.getenv('MEDIA_ROOT', '/media/')
+MEDIA_ROOT = env('MEDIA_ROOT', '/media/')
 
-MEDIA_URL = os.getenv('MEDIA_URL', '/media/')
+MEDIA_URL = env('MEDIA_URL', '/media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-print(env('STATIC_ROOT'))
