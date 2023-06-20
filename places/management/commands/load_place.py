@@ -54,3 +54,7 @@ class Command(BaseCommand):
 
         except requests.exceptions.JSONDecodeError:
             print('JSON decoding Error')
+        except requests.HTTPError:
+            print('Ошибка в запросе')
+        except requests.ConnectionError:
+            print("Ошибка соединения")
