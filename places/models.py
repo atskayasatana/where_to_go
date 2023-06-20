@@ -7,7 +7,7 @@ from django.conf import settings
 
 class Place(models.Model):
 
-    title = models.CharField(max_length=250, verbose_name='Локация')
+    title = models.CharField(max_length=250, verbose_name='Локация', unique=True)
     description_short = HTMLField(verbose_name='Краткое описание')
     description_long = HTMLField(verbose_name='Полное описание')
     latitude = models.FloatField(verbose_name='Широта')
@@ -31,8 +31,7 @@ class Image(models.Model):
                              blank=True,
                              verbose_name='Название изображения')
 
-    image = models.ImageField(verbose_name='Файл',
-                              upload_to='media/')
+    image = models.ImageField(verbose_name='Файл')
 
     def save(self, *args, **kwargs):
         self.title = f'{self.position_number} {self.place.title}'
