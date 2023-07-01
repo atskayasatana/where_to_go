@@ -32,9 +32,9 @@ class Image(models.Model):
 
     image = models.ImageField(verbose_name='Файл')
 
-    def save(self, *args, **kwargs):
+    def create_image_name(self, *args, **kwargs):
         self.title = f'{self.position_number} {self.place.title}'
-        super(Image, self).save(*args, **kwargs)
+        self.save()
 
     class Meta:
         ordering = ('position_number',)
