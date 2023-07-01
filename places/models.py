@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from tinymce.models import HTMLField
 from django.conf import settings
@@ -7,7 +8,7 @@ from django.conf import settings
 
 class Place(models.Model):
 
-    title = models.CharField(max_length=250, verbose_name='Локация', unique=True)
+    title = models.CharField(max_length=250, verbose_name='Локация', unique=True, default=uuid.uuid1)
     description_short = HTMLField(verbose_name='Краткое описание')
     description_long = HTMLField(verbose_name='Полное описание')
     latitude = models.FloatField(verbose_name='Широта')
@@ -18,8 +19,6 @@ class Image(models.Model):
 
     place = models.ForeignKey(Place,
                               on_delete=models.CASCADE,
-                              null=True,
-                              blank=True,
                               verbose_name='Локация',
                               related_name='images')
     position_number = models.IntegerField(null=False,
