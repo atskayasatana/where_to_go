@@ -30,7 +30,7 @@ def show_main_page(request):
         geometry_dict['coordinates'] = coordinates
 
         properties_dict['title'] = title
-        properties_dict['placeId'] = title
+        properties_dict['placeId'] = place.id
         properties_dict['detailsUrl'] = reverse('place_info', args=[place.id])
 
         feature_dict['type'] = 'Feature'
@@ -47,7 +47,6 @@ def get_location_title_by_id(request, id):
 
     coordinates = OrderedDict()
     images = []
-    place_description = OrderedDict()
 
     title = place.title
     description_short = place.description_short
@@ -63,10 +62,12 @@ def get_location_title_by_id(request, id):
     for image in images_set:
         images.append(image.image.url)
 
-    place_description['title'] = title
-    place_description['imgs'] = images
-    place_description['description_short'] = description_short
-    place_description['description_long'] = description_long
-    place_description['coordinates'] = coordinates
+    place_description = {
+        'title': title,
+        'imgs': images,
+        'description_short': description_short,
+        'description_long': description_long,
+        'coordinates': coordinates
+    }
 
     return JsonResponse(dict(place_description), safe=False)
