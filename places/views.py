@@ -26,16 +26,22 @@ def show_main_page(request):
         title = place.title
         coordinates = [place.longtitude, place.latitude]
 
-        geometry_dict['type'] = 'Point'
-        geometry_dict['coordinates'] = coordinates
+        geometry_dict = {
+            'type': 'Point',
+            'coordinates': coordinates,
+        }
 
-        properties_dict['title'] = title
-        properties_dict['placeId'] = place.id
-        properties_dict['detailsUrl'] = reverse('place_info', args=[place.id])
+        properties_dict = {
+            'title': title,
+            'placeId': place.id,
+            'detailsUrl': reverse('place_info', args=[place.id])
+        }
 
-        feature_dict['type'] = 'Feature'
-        feature_dict['geometry'] = geometry_dict
-        feature_dict['properties'] = properties_dict
+        feature_dict = {
+            'type': 'Feature',
+            'geometry': geometry_dict,
+            'properties': properties_dict
+        }
 
         geo_json_dict['features'].append(dict(feature_dict))
 
